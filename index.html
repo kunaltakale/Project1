@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advertisement Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        .advertisement {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .form-container button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Advertisement Page</h1>
+    </header>
+    <div class="container">
+        <div class="advertisement">
+            <h2>Special Offer!</h2>
+            <p>Don't miss out on our exclusive deals. Limited time only!</p>
+        </div>
+        <div class="form-container">
+            <h2>Send Us a Message</h2>
+            <form id="messageForm">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('messageForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var name = document.getElementById('name').value;
+            var message = document.getElementById('message').value;
+            var phoneNumber = '+918432070754';
+            
+            if (name && message) {
+                var fullMessage = 'Name: ' + name + '\nMessage: ' + message;
+                sendSMS(phoneNumber, fullMessage);
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+
+        function sendSMS(phoneNumber, message) {
+            // This function simulates sending an SMS
+            console.log('Sending SMS to ' + phoneNumber + ' with message: ' + message);
+            alert('Message sent to ' + phoneNumber);
+        }
+    </script>
+</body>
+</html>
