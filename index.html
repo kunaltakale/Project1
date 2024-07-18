@@ -72,21 +72,31 @@
             event.preventDefault();
             var name = document.getElementById('name').value;
             var message = document.getElementById('message').value;
-            var phoneNumber = '+918432070754';
-            
+
             if (name && message) {
-                var fullMessage = 'Name: ' + name + '\nMessage: ' + message;
-                sendSMS(phoneNumber, fullMessage);
+                fetch('/send-sms', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: name, message: message })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Message sent successfully!');
+                    } else {
+                        alert('Failed to send message: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to send message.');
+                });
             } else {
                 alert('Please fill in all fields.');
             }
         });
-
-        function sendSMS(phoneNumber, message) {
-            // This function simulates sending an SMS
-            console.log('Sending SMS to ' + phoneNumber + ' with message: ' + message);
-            alert('Message sent to ' + phoneNumber);
-        }
     </script>
 </body>
 </html>
